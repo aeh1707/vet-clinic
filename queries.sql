@@ -11,15 +11,19 @@ SELECT * FROM animals WHERE round(weight_kg::numeric, 2) >= 10.23 AND round(weig
 
 BEGIN;
 update animals set species = 'unspecified';
+SELECT * from animals;
 rollback;
+SELECT * from animals;
 -- 
 BEGIN;
 update animals set species = 'digmon' where name like '%mon';
 update animals set species = 'pokemon' where species is NULL;
 commit;
+SELECT * from animals;
 -- 
 BEGIN;
 delete from animals;
+SELECT * from animals;
 rollback;
 
 BEGIN;
