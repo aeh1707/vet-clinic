@@ -9,4 +9,27 @@ CREATE TABLE animals (
     weight_kg decimal
 );
 
-alter table animals add column species varchar ;
+alter table animals add COLUMN species varchar ;
+
+CREATE TABLE owners (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    full_name VARCHAR(100),
+    age INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE species (
+    id INTEGER GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(100),
+    PRIMARY KEY(id)
+);
+
+ALTER TABLE animals DROP COLUMN species;
+
+ALTER TABLE animals ADD COLUMN species_id INTEGER;
+
+ALTER TABLE animals ADD COLUMN owner_id INTEGER;
+
+ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species (id);
+
+ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners (id);
